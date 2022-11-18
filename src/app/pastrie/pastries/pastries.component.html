@@ -1,0 +1,43 @@
+<div class="row content">
+    <h1>{{ titlePage }}</h1>
+
+    <div class="container text-center">
+
+        <div class="row justify-content-md-center">
+            <div class="col-sm-4"> <app-pastrie-details [pastrie]="selectedPastry"> 
+                </app-pastrie-details> 
+            </div>
+
+            <div class="col-sm-8 pastrie" >
+                <div style="list-style: none" *ngIf="pastries">
+                    <div  *ngFor="let pastrie of pastries">
+                        <div class="card" style="width: 70rem;">
+
+                            <div class="card-header"> {{pastrie.ref}} </div>
+
+                            <div class="card-body">
+                                <h5 class="card-title"> {{pastrie.name}} </h5>
+                                <p class="card-text">{{pastrie.description}}</p>
+
+                                <ul style="list-style: none" *ngIf="pastrie.tags">
+                                    <li class="list-inline-item" *ngFor="let tag of pastrie.tags">
+                                        <span class="{{tag | pastrieTagColor}} badge"> {{tag}} </span>
+                                    </li>
+                                </ul>
+
+                                <div>
+                                    <button class="btn btn-outline-dark">fr</button>
+                                    <ng-template *ngIf="pastrie.like"><img src="../../assets/images/suit-heart-fill.svg">{{pastrie.like}}</ng-template>
+                                    <ng-template *ngIf="pastrie.quantity"><img src="../../assets/images/fast-forward-fill.svg">{{pastrie.quantity}}</ng-template> unités disponibles
+                                </div> 
+    
+                                <button (click)="selectPastry(pastrie)"> Détail </button>
+                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
